@@ -1,28 +1,37 @@
 # Initialize an empty list to store the heights
 student_heights = []
 
-# Get the number of students as input
-num_students = int(input("Enter the number of students: "))
+# Get the heights from the user, terminated by an empty input
+while True:
+    height_input = input("Enter the height of a student in centimeters (or press Enter to finish): ")
 
-# Loop to collect the heights from the user
-for i in range(num_students):
-    height = float(input(f"Enter the height of student {i + 1} in centimeters: "))
-    student_heights.append(height)
+    if height_input == "":
+        break
 
-# Initialize variables to calculate the sum and count
-total_height = 0
-count = 0
+    try:
+        height = float(height_input)
+        student_heights.append(height)
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
 
-# Loop to calculate the sum of heights
-for height in student_heights:
-    total_height += height
-    count += 1
+# Check if the list is empty
+if not student_heights:
+    print("No heights were entered.")
+else:
+    # Initialize variables to calculate the sum and count
+    total_height = 0
+    count = 0
 
-# Calculate the average height
-average_height = total_height / count
+    # Loop to calculate the sum of heights
+    for height in student_heights:
+        total_height += height
+        count += 1
 
-# Round the average height to two decimal places
-average_height = round(average_height, 2)
+    # Calculate the average height
+    average_height = total_height / count
 
-# Display the result
-print(f"The average height of {num_students} students is {average_height} centimeters.")
+    # Round the average height to the nearest whole number
+    average_height = round(average_height)
+
+    # Display the result
+    print(f"The average height of the students is {average_height} centimeters.")
